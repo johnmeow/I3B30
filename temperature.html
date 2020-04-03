@@ -28,13 +28,13 @@
 				<h1>溫度換算</h1>
 				<article>
 					<p>攝氏：</p>
-					<input placeholder="輸入攝氏..." type="number" name="C" id="C" min="-273.15" onkeyup="F.value=CtoF(this.value);K.value=CtoK(this.value);R.value=FtoR(F.value);">°C<br>
+					<input placeholder="輸入攝氏..." type="number" name="C" id="C" onkeyup="F.value=CtoF(this.value);K.value=CtoK(this.value);R.value=FtoR(F.value);" onchange="F.value=CtoF(this.value);K.value=CtoK(this.value);R.value=FtoR(F.value);">°C<br>
 					<p>華氏：</p>
-					<input placeholder="輸入華氏..." type="number" name="F" id="F" min="-459.67" onkeyup="C.value=FtoC(this.value);K.value=CtoK(C.value);R.value=FtoR(this.value);">°F<br>
+					<input placeholder="輸入華氏..." type="number" name="F" id="F" onkeyup="C.value=FtoC(this.value);K.value=CtoK(C.value);R.value=FtoR(this.value);" onchange="C.value=FtoC(this.value);K.value=CtoK(C.value);R.value=FtoR(this.value);">°F<br>
 					<p>凱氏：</p>
-					<input placeholder="輸入凱氏..." type="number" name="K" id="K" min="0" onkeyup="C.value=KtoC(this.value);F.value=CtoF(C.value);R.value=FtoR(F.value);">K<br>
+					<input placeholder="輸入凱氏..." type="number" name="K" id="K" onkeyup="C.value=KtoC(this.value);F.value=CtoF(C.value);R.value=FtoR(F.value);" onchange="C.value=KtoC(this.value);F.value=CtoF(C.value);R.value=FtoR(F.value);">K<br>
 					<p>蘭金：</p>
-					<input placeholder="輸入蘭金..." type="number" name="R" id="R" min="0" onkeyup="F.value=RtoF(this.value);C.value=FtoC(F.value);K.value=CtoK(C.value);">°R<br>
+					<input placeholder="輸入蘭金..." type="number" name="R" id="R" onkeyup="F.value=RtoF(this.value);C.value=FtoC(F.value);K.value=CtoK(C.value);" onchange="F.value=RtoF(this.value);C.value=FtoC(F.value);K.value=CtoK(C.value);">°R<br>
 				</article>
 			</section>
 		</main>
