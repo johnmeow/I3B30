@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>length conversion</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>單位換算</h1>
+			<p>unit conversion</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "length.html">長度換算</a></li>
+				<li><a href = "weight.html">重量換算</a></li>
+				<li><a href = "volume.html">容積換算</a></li>
+				<li><a href = "temperature.html">溫度換算</a></li>
+				<li><a href = "time.html">時間換算</a></li>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h1>容積換算</h1>
+				<article>
+					<p>從：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input1" id="input1" onkeyup="cal(input1,unit1,input2,unit2);">
+						<select id="unit1" name="unit1" title="" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="" title="" disabled>公制</option>
+						　<option value="mL" title="millilitre">mL</option>
+						　<option value="L" title="litre">L</option>
+						　<option value="mm3" title="cubic millimeter">mm³</option>
+						　<option value="cm3" title="cubic centimeter">cm³</option>
+						　<option value="in3" title="cubic inch">in³</option>
+						　<option value="ft3" title="cubic feet">ft³</option>
+						　<option value="m3" title="cubic meter">m³</option>
+						　<option value="yd3" title="cubic yard">yd³</option>
+						　<option value="" title="" disabled></option>
+						　<option value="" title="" disabled>美制單位</option>
+						　<option value="fl oz(US)" title="fluid ounce">fl oz</option>
+						　<option value="pt(US)" title="point">pt</option>
+						　<option value="cup(US)" title="cup">cup</option>
+						　<option value="qt(US)" title="quarter">qt</option>
+						　<option value="gal(US)" title="galon">gal</option>
+						　<option value="tbsp(US)" title="tablespoon">tbsp</option>
+						　<option value="tsp(US)" title="teaspoon">tsp</option>
+						　<option value="" title="" disabled></option>
+						　<option value="" title="" disabled>英制單位</option>
+						　<option value="fl oz(UK)" title="fluid ounce">fl oz</option>
+						　<option value="pt(UK)" title="pint">pt</option>
+						　<option value="cup(UK)" title="cup">cup</option>
+						　<option value="qt(UK)" title="quarter">qt</option>
+						　<option value="gal(UK)" title="galon">gal</option>
+						　<option value="tbsp(UK)" title="tablespoon">tbsp</option>
+						　<option value="tsp(UK)" title="teaspoon">tsp</option>
+						</select>
+					</form>
+					<p>到：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input2" id="input2" onkeyup="cal(input2,unit2,input1,unit1);">
+						<select id="unit2" name="unit2" title="kilometer" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="" title="" disabled>公制</option>
+						　<option value="mL" title="millilitre">mL</option>
+						　<option value="L" title="litre">L</option>
+						　<option value="mm3" title="cubic millimeter">mm³</option>
+						　<option value="cm3" title="cubic centimeter">cm³</option>
+						　<option value="in3" title="cubic inch">in³</option>
+						　<option value="ft3" title="cubic feet">ft³</option>
+						　<option value="m3" title="cubic meter">m³</option>
+						　<option value="yd3" title="cubic yard">yd³</option>
+						　<option value="" title="" disabled></option>
+						　<option value="" title="" disabled>美制單位</option>
+						　<option value="fl oz(US)" title="fluid ounce">fl oz</option>
+						　<option value="pt(US)" title="point">pt</option>
+						　<option value="cup(US)" title="cup">cup</option>
+						　<option value="qt(US)" title="quarter">qt</option>
+						　<option value="gal(US)" title="galon">gal</option>
+						　<option value="tbsp(US)" title="tablespoon">tbsp</option>
+						　<option value="tsp(US)" title="teaspoon">tsp</option>
+						　<option value="" title="" disabled></option>
+						　<option value="" title="" disabled>英制單位</option>
+						　<option value="fl oz(UK)" title="fluid ounce">fl oz</option>
+						　<option value="pt(UK)" title="pint">pt</option>
+						　<option value="cup(UK)" title="cup">cup</option>
+						　<option value="qt(UK)" title="quarter">qt</option>
+						　<option value="gal(UK)" title="galon">gal</option>
+						　<option value="tbsp(UK)" title="tablespoon">tbsp</option>
+						　<option value="tsp(UK)" title="teaspoon">tsp</option>
+						</select>
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>換算</h2>
+			<br>
+			<b id="formula">1 mL = 1 mL</b>
+		</aside>
+		
+		<footer>
+			<p>unit conversion page</p>
+		</footer>
+		
+		<script>
+			function cal(input, unit, output, unit_out)
+			{
+				//	yd³   :  ft³ : in³
+				// 466556 : 1728 : 1
+				// fl oz : pt : cup : qt  : gal : tbsp : tsp
+				// 6(US) : 96 :  48 : 192 : 768 :   3  :  1
+				// 4.8(UK)
+				//				mL		L	mm³	cm³		in³				ft³			m³			yd³		美制		fl oz			pt		cup			qt			gal				tbsp			tsp			英制	fl oz			pt		cup			qt		gal			tbsp			tsp	
+				var ratio = [-1, 1,	1000,0.001,	1, 16.387064, 28316.846592,  1000000,  764554.857984, -1, -1,   29.5735295625, 473.176473, 236.588237, 946.352946, 3785.411784, 14.78676477, 4.92892159375, -1, -1,  28.4130625, 568.26125, 284.130625, 1136.5225, 4546.09, 17.7581640625, 5.91938802083];
+				var n = roundX(6, ratio[unit.selectedIndex] / ratio[unit_out.selectedIndex]);
+				output.value = input.value * n;
+				//change formula
+				var nstring = "1 " + unit.options[unit.selectedIndex].value + " = " + n + " " + unit_out.options[unit_out.selectedIndex].value;
+				document.getElementById("formula").innerHTML = nstring;
+			}
+			function roundX(n, value)
+			{
+				var a = 1;
+				for(var i = 0; i < n; i++) a *= 10;
+				return Math.round(value * a)/a;
+			}
+		</script>
+		
+	</body>
+</html>

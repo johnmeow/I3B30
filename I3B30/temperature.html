@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>length conversion</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>單位換算</h1>
+			<p>unit conversion</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "length.html">長度換算</a></li>
+				<li><a href = "weight.html">重量換算</a></li>
+				<li><a href = "volume.html">容積換算</a></li>
+				<li><a href = "temperature.html">溫度換算</a></li>
+				<li><a href = "time.html">時間換算</a></li>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h1>溫度換算</h1>
+				<article>
+					<p>攝氏：</p>
+					<input placeholder="輸入攝氏..." type="number" name="C" id="C" min="-273.15" onkeyup="F.value=CtoF(this.value);K.value=CtoK(this.value);R.value=FtoR(F.value);">°C<br>
+					<p>華氏：</p>
+					<input placeholder="輸入華氏..." type="number" name="F" id="F" min="-459.67" onkeyup="C.value=FtoC(this.value);K.value=CtoK(C.value);R.value=FtoR(this.value);">°F<br>
+					<p>凱氏：</p>
+					<input placeholder="輸入凱氏..." type="number" name="K" id="K" min="0" onkeyup="C.value=KtoC(this.value);F.value=CtoF(C.value);R.value=FtoR(F.value);">K<br>
+					<p>蘭金：</p>
+					<input placeholder="輸入蘭金..." type="number" name="R" id="R" min="0" onkeyup="F.value=RtoF(this.value);C.value=FtoC(F.value);K.value=CtoK(C.value);">°R<br>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>換算</h2>
+			<br>
+			<b id="formula">°F = °C * 9/5 + 32</b><br><br>
+			<b>°C = (°F + 32) * 5/9</b><br><br>
+			<b>°K = °C + 273.15</b><br><br>
+			<b>°R = °F + 459.67</b><br><br>
+		</aside>
+		
+		<footer>
+			<p>unit conversion page</p>
+		</footer>
+		
+		<script>
+			function FtoC(n)
+			{
+				return roundX(2, (n - 32) * 5 / 9);
+			}
+			function CtoF(n)
+			{
+				return roundX(2, n * 9 / 5 + 32);
+			}
+			function CtoK(n)
+			{
+				return roundX(2, n * 1 + 273.15);
+			}
+			function FtoR(n)
+			{
+				return roundX(2, n * 1 + 459.67);
+			}
+			function KtoC(n)
+			{
+				return roundX(2, n * 1 - 273.15);
+			}
+			function RtoF(n)
+			{
+				return roundX(2, n * 1 - 459.67);
+			}
+			function roundX(n, value)
+			{
+				var a = 1;
+				for(var i = 0; i < n; i++) a *= 10;
+				return Math.round(value * a)/a;
+			}
+		</script>
+		
+	</body>
+</html>
