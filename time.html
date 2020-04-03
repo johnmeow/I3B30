@@ -29,7 +29,7 @@
 				<article>
 					<p>從：</p>
 					<form>
-						<input placeholder="輸入數值..." type="number" name="input1" id="input1" onkeyup="cal(input1,unit1,input2,unit2);">
+						<input placeholder="輸入數值..." type="number" name="input1" id="input1" onkeyup="cal(input1,unit1,input2,unit2);" onchange="cal(input1,unit1,input2,unit2);">
 						<select id="unit1" name="unit1" title="second" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
 						　<option value="s" title="second">s</option>
 						　<option value="fs" title="femtosecond">fs</option>
@@ -57,7 +57,7 @@
 					</form>
 					<p>到：</p>
 					<form>
-						<input placeholder="輸入數值..." type="number" name="input2" id="input2" onkeyup="cal(input2,unit2,input1,unit1);">
+						<input placeholder="輸入數值..." type="number" name="input2" id="input2" onkeyup="cal(input2,unit2,input1,unit1);" onchange="cal(input2,unit2,input1,unit1);">
 						<select id="unit2" name="unit2" title="second" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
 						　<option value="s" title="second">s</option>
 						　<option value="fs" title="femtosecond">fs</option>
