@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>length conversion</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>單位換算</h1>
+			<p>unit conversion</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "length.html">長度換算</a></li>
+				<li><a href = "weight.html">重量換算</a></li>
+				<li><a href = "volume.html">容積換算</a></li>
+				<li><a href = "temperature.html">溫度換算</a></li>
+				<li><a href = "time.html">時間換算</a></li>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h1>重量換算</h1>
+				<article>
+					<p>從：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input1" id="input1" onkeyup="cal(input1,unit1,input2,unit2);">
+						<select id="unit1" name="unit1" title="metric ton" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="mt" title="metric ton">mt</option>
+						　<option value="kg" title="kilograms">kg</option>
+						　<option value="g" title="grams">g</option>
+						　<option value="mg" title="milligrams">mg</option>
+						　<option value="ug" title="micrograms">ug</option>
+						　<option value="ST" title="US Tons">ST</option>
+						　<option value="LT" title="Imperial Tons">LT</option>
+						　<option value="lb" title="pounds">lb</option>
+						　<option value="oz" title="ounce">oz</option>
+						</select>
+					</form>
+					<p>到：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input2" id="input2" onkeyup="cal(input2,unit2,input1,unit1);">
+						<select id="unit2" name="unit2" title="metric ton" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="mt" title="metric ton">mt</option>
+						　<option value="kg" title="kilograms">kg</option>
+						　<option value="g" title="grams">g</option>
+						　<option value="mg" title="milligrams">mg</option>
+						　<option value="ug" title="micrograms">ug</option>
+						　<option value="ST" title="US Tons">ST</option>
+						　<option value="LT" title="Imperial Tons">LT</option>
+						　<option value="lb" title="pounds">lb</option>
+						　<option value="oz" title="ounce">oz</option>
+						</select>
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>換算</h2>
+			<br>
+			<b id="formula">1 mt = 1 mt</b>
+		</aside>
+		
+		<footer>
+			<p>unit conversion page</p>
+		</footer>
+		
+		<script>
+			function cal(input, unit, output, unit_out)
+			{
+				//				mt		kg		g		mg		ug		ST				LT		lb				oz
+				var ratio = [1000000,	1000,	1,	0.001,0.000001,907184.74,1016046.9088,453.59237, 28.349523125];
+				var n = roundX(6, ratio[unit.selectedIndex] / ratio[unit_out.selectedIndex]);
+				output.value = input.value * n;
+				//change formula
+				var nstring = "1 " + unit.options[unit.selectedIndex].value + " = " + n + " " + unit_out.options[unit_out.selectedIndex].value;
+				document.getElementById("formula").innerHTML = nstring;
+			}
+			function roundX(n, value)
+			{
+				var a = 1;
+				for(var i = 0; i < n; i++) a *= 10;
+				return Math.round(value * a)/a;
+			}
+		</script>
+		
+	</body>
+</html>

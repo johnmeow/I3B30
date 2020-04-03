@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>length conversion</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>單位換算</h1>
+			<p>unit conversion</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "length.html">長度換算</a></li>
+				<li><a href = "weight.html">重量換算</a></li>
+				<li><a href = "volume.html">容積換算</a></li>
+				<li><a href = "temperature.html">溫度換算</a></li>
+				<li><a href = "time.html">時間換算</a></li>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h1>時間換算</h1>
+				<article>
+					<p>從：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input1" id="input1" onkeyup="cal(input1,unit1,input2,unit2);">
+						<select id="unit1" name="unit1" title="second" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="s" title="second">s</option>
+						　<option value="fs" title="femtosecond">fs</option>
+						　<option value="ps" title="picosecond">ps</option>
+						　<option value="ns" title="nanosecond">ns</option>
+						　<option value="us" title="microsecond">us</option>
+						　<option value="ms" title="millisecond">ms</option>
+						　<option value="min" title="minute">min</option>
+						　<option value="h" title="hour">h</option>
+						　<option value="d" title="day">d</option>
+						　<option value="month" title="month">month</option>
+						　<option value="synodic month" title="synodic month">synodic month</option>
+						　<option value="y" title="year">y</option>
+						　<option value="sidereal year" title="sidereal year">sidereal year</option>
+						　<option value="julian year" title="julian year">julian year</option>
+						　<option value="leap year" title="leap year">leap year</option>
+						　<option value="tropical year" title="tropical year">tropical year</option>
+						　<option value="fortnight" title="fortnight">fortnight</option>
+						　<option value="millennium" title="millennium">millennium</option>
+						　<option value="century" title="century">century</option>
+						　<option value="decade" title="decade">decade</option>
+						　<option value="shake" title="shake">shake</option>
+						</select>
+					</form>
+					<p>到：</p>
+					<form>
+						<input placeholder="輸入數值..." type="number" name="input2" id="input2" onkeyup="cal(input2,unit2,input1,unit1);">
+						<select id="unit2" name="unit2" title="second" onchange="this.title=this.options[this.selectedIndex].title;cal(input1,unit1,input2,unit2);">
+						　<option value="s" title="second">s</option>
+						　<option value="fs" title="femtosecond">fs</option>
+						　<option value="ps" title="picosecond">ps</option>
+						　<option value="ns" title="nanosecond">ns</option>
+						　<option value="us" title="microsecond">us</option>
+						　<option value="ms" title="millisecond">ms</option>
+						　<option value="min" title="minute">min</option>
+						　<option value="h" title="hour">h</option>
+						　<option value="d" title="day">d</option>
+						　<option value="month" title="month">month</option>
+						　<option value="synodic month" title="synodic month">synodic month</option>
+						　<option value="y" title="year">y</option>
+						　<option value="sidereal year" title="sidereal year">sidereal year</option>
+						　<option value="julian year" title="julian year">julian year</option>
+						　<option value="leap year" title="leap year">leap year</option>
+						　<option value="tropical year" title="tropical year">tropical year</option>
+						　<option value="fortnight" title="fortnight">fortnight</option>
+						　<option value="millennium" title="millennium">millennium</option>
+						　<option value="century" title="century">century</option>
+						　<option value="decade" title="decade">decade</option>
+						　<option value="shake" title="shake">shake</option>
+						</select>
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<h2>換算</h2>
+			<br>
+			<b id="formula">1 s = 1 s</b>
+		</aside>
+		
+		<footer>
+			<p>unit conversion page</p>
+		</footer>
+		
+		<script>
+			function cal(input, unit, output, unit_out)
+			{
+				var ratio = [["second [s]",1],["femtosecond [fs]",1e-15],["picosecond [ps]",1e-12],["nanosecond [ns]",1e-9],["microsecond [us]",1e-6],["millisecond [ms]",1e-3],["minute [min]",60],["hour [h]",3600],["day [d]",86400],["week",604800],["month",2628000],["month (Synodic)",2551442.8896],["year [y]",31536000],["year (Sidereal)",31558149],["year (Julian)",31557600],["year (Leap)",31622400],["year (Tropical)",31556925.216],["fortnight",1209600],["millennium",31536000000],["century",3153600000],["decade",315360000],["shake",1e-8]]
+				var n = roundX(6, ratio[unit.selectedIndex][1] / ratio[unit_out.selectedIndex][1]);
+				output.value = input.value * n;
+				//change formula
+				var nstring = "1 " + unit.options[unit.selectedIndex].value + " = " + n + " " + unit_out.options[unit_out.selectedIndex].value;
+				document.getElementById("formula").innerHTML = nstring;
+			}
+			function roundX(n, value)
+			{
+				var a = 1;
+				for(var i = 0; i < n; i++) a *= 10;
+				return Math.round(value * a)/a;
+			}
+		</script>
+		
+	</body>
+</html>
