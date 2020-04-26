@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>interactive</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>互動</h1>
+			<p>interactive</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "interactive.html">互動</a></li>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>Show Your Name</h2>
+				<article>
+					<form onsubmit="showN(fname.value, lname.value)" method="post" target="n_iframe">
+					  <label for="fname">First name:</label><br>
+					  <input type="text" id="fname" value="John"><br>
+					  <label for="lname">Last name:</label><br>
+					  <input type="text" id="lname" value="Meow"><br><br>
+					  <input type="submit" value="Submit">
+					</form><br>
+					<iframe id="n_iframe" name="n_iframe" style="display:none;"></iframe>
+					<p id="showName">Your name is :</p>
+				<article>
+			</section>
+		</main>
+		
+		<aside>
+			<img id="bulb" src="bulb-off.png" alt="blub" width="250" height="375"><br>
+			<button id="onB" onclick="document.getElementById('bulb').src='bulb-on.png'; changeB('onB', 'offB')" style="display:block;">
+			turn on the blub
+			</button>
+			<button id="offB" onclick="document.getElementById('bulb').src='bulb-off.png'; changeB('offB', 'onB')" style="display:none">
+			turn off the blub
+			</button>
+		</aside>
+		
+		<footer>
+			<p>Try to interactive with page.</p>
+		</footer>
+		
+		<script>
+			function changeB(B1, B2)
+			{
+				document.getElementById(B1).style.display = "none";
+				document.getElementById(B2).style.display = "block";
+			}
+			function showN(fname, lname)
+			{
+				document.getElementById('showName').innerHTML = "Your name is : " + fname + " " + lname;
+			}
+		</script>
+		
+	</body>
+</html>
