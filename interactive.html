@@ -5,7 +5,7 @@
 		<title>interactive</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	<body>
+	<body id="wholePage">
 	
 		<header class = "banner">
 			<h1>互動</h1>
@@ -32,7 +32,25 @@
 					</form><br>
 					<iframe id="n_iframe" name="n_iframe" style="display:none;"></iframe>
 					<p id="showName">Your name is :</p>
+				</article>
+			</section>
+			<section>
+				<h2>Replace The Text</h2>
 				<article>
+					<p>This is a text that you can test to replace.</p>
+					<p>This is another text that you can test to replace.</p>
+					<p>Try to search or replace these texts.</p>
+					<p>You can replace the whole page's texts if you want.</p>
+					<br>
+					<form>
+					  <label for="search">請輸入欲尋找文字：</label>
+					  <input type="text" id="search" name="尋找">
+					  <button type="button" onClick="searchF(0)">尋找</button><br>
+					  <label for="replace">請輸入欲修改文字：</label>
+					  <input type="text" id="replace" name="修改">
+					  <button type="button" onClick="searchF(1)">修改</button><br>
+					</form>
+				</article>
 			</section>
 		</main>
 		
@@ -58,7 +76,68 @@
 			}
 			function showN(fname, lname)
 			{
-				document.getElementById('showName').innerHTML = "Your name is : " + fname + " " + lname;
+				document.getElementById("showName").innerHTML = "Your name is : " + fname + " " + lname;
+			}
+			var searchlog = undefined;
+			var replacelog = undefined;
+			var tag = [];
+			tag[0] = document.getElementsByTagName("p");
+			tag[1] = document.getElementsByTagName("label");
+			tag[2] = document.getElementsByTagName("button");
+			tag[3] = document.getElementsByTagName("a");
+			tag[4] = document.getElementsByTagName("h1");
+			tag[5] = document.getElementsByTagName("h2");
+			//tag[] = document.getElementsByTagName("");
+			function searchF(r)
+			{
+				if(replacelog) clear(replacelog);
+				else if(searchlog) clear(searchlog);
+				replacelog = searchlog = undefined;
+			
+				var searchText = document.getElementById("search").value;
+				if(searchText.length == 0)
+				{
+					alert("請輸入欲尋找文字");
+					return false;
+				}
+				var searchRE = new RegExp(searchText, 'g');
+				if(!r)
+				{
+					for(var i = 0; i < tag.length; i++)
+					{
+						for(var j = 0; j < tag[i].length; j++)
+						{
+							var newHTML = tag[i][j].innerHTML;
+							//console.log(newHTML);
+							tag[i][j].innerHTML = newHTML.replace(searchRE, "<span style='background:yellow;'>" + searchText + "</span>");
+						}
+					}
+					searchlog = searchText;
+				}
+				if(!r) return false;
+				var replaceText = document.getElementById("replace").value;
+				for(var i = 0; i < tag.length; i++)
+				{
+					for(var j = 0; j < tag[i].length; j++)
+					{
+						var newHTML = tag[i][j].innerHTML;
+						tag[i][j].innerHTML = newHTML.replace(searchRE, "<span style='background:red;'>" + replaceText + "</span>");
+					}
+				}
+				replacelog = replaceText;
+			}
+			function clear(log)
+			{
+				var logRE = new RegExp('<span style=\\"background:r?e?d?y?e?l?l?o?w?;\\">' + log + "<\\/span>", 'g');
+				console.log(logRE);
+				for(var i = 0; i < tag.length; i++)
+				{
+					for(var j = 0; j < tag[i].length; j++)
+					{
+						var newHTML = tag[i][j].innerHTML;
+						tag[i][j].innerHTML = newHTML.replace(logRE, log);
+					}
+				}
 			}
 		</script>
 		
