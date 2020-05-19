@@ -116,12 +116,14 @@
 				}
 				if(!r) return false;
 				var replaceText = document.getElementById("replace").value;
+				if(replaceText)
+					replaceText = "<span style='background:red;'>" + replaceText + "</span>";
 				for(var i = 0; i < tag.length; i++)
 				{
 					for(var j = 0; j < tag[i].length; j++)
 					{
 						var newHTML = tag[i][j].innerHTML;
-						tag[i][j].innerHTML = newHTML.replace(searchRE, "<span style='background:red;'>" + replaceText + "</span>");
+						tag[i][j].innerHTML = newHTML.replace(searchRE, replaceText);
 					}
 				}
 				replacelog = replaceText;
