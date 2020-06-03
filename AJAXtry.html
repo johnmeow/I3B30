@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<title>AJAX</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<header class = "banner">
+			<h1>AJAX test</h1>
+			<p>try to read JSON</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "index.html">回首頁</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>各鄉鎮市區人口密度 <button id="btn">取得資料</button></h2>
+				<article id="data-info">
+				</article>
+			</section>
+		</main>
+	
+		<aside>
+			<p>每頁顯示<select id="showNum"></select>筆資料</p>
+			<p><button id="backward"><-</button> 第<select id="pageNum"></select>頁 <button id="forward">-></button></p>
+		</aside>
+		
+		<footer>
+			資料來源：<a href="https://data.gov.tw/" target="_blank"; style="color: white;">政府資料開放平臺</a>
+		</footer>
+		
+		<script src="main.js"></script>
+		
+	</body>
+</html>
