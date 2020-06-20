@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>PageI3B30 API</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>Google Maps Embed API</h1>
+			<p>地圖查詢功能</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "GoogleAPI.html">標記地點</a></li>
+				<li><a href = "APIdirections.html">路線規劃</a></li>
+				<li><a href = "APIsearch.html">搜尋</a></li>
+				<li><a href = "APIview.html">檢視</a></li>
+				<li><a href = "APIstreetview.html">街景服務</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>標記地點</h2>
+				<article>
+					<p>選擇想標記的地點</p>
+					<select id = "markplace" onchange="mark(this.value);">
+						<option value = "台北市政府">台北市政府</option>
+						<option value = "新北市政府">新北市政府</option>
+						<option value = "桃園市政府">桃園市政府</option>
+						<option value = "台中市政府">台中市政府</option>
+						<option value = "台南市政府">台南市政府</option>
+						<option value = "高雄市政府">高雄市政府</option>
+					</select>
+					<br><br>
+					<form>
+						或是輸入想標記的地點：<input type = "text" id = "markplacein" />
+						<input type = "button" value = "送出" onclick = "markin();" />
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<iframe 
+				id = "map"
+				width="540" 
+				height="450" 
+				frameborder="0" 
+				style="border:0" 
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ&q=台北市政府"
+				>
+			</iframe>
+		</aside>
+		
+		<footer>
+			<p>參考網站：<a href = "https://www.oxxostudio.tw/articles/201707/google-maps-1.html" target="_blank;" style="color: white;">OxxoStudio</a></p>
+		</footer>
+		
+		<script>
+			var key = "AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ";
+			function mark(place){
+				document.getElementById("map").src = "https://www.google.com/maps/embed/v1/place?key=" + key + "&q=" + place;
+			}
+			function markin(){
+				var place = document.getElementById("markplacein").value;
+				if(place == ""){
+					alert("請輸入地點");
+					return;
+				}
+				document.getElementById("map").src = "https://www.google.com/maps/embed/v1/place?key=" + key + "&q=" + place.replace(/\s/g, '+');//將空格改為+
+			}
+		</script>
+		
+	</body>
+</html>

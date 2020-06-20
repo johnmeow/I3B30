@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>PageI3B30 API</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>Google Maps Embed API</h1>
+			<p>地圖查詢功能</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "GoogleAPI.html">標記地點</a></li>
+				<li><a href = "APIdirections.html">路線規劃</a></li>
+				<li><a href = "APIsearch.html">搜尋</a></li>
+				<li><a href = "APIview.html">檢視</a></li>
+				<li><a href = "APIstreetview.html">街景服務</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>搜尋</h2>
+				<article>
+					<form>
+						搜尋關鍵字：<input type = "text" id = "q" />
+						<input type = "button" value = "搜尋" onclick = "search();" />
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<iframe 
+				id = "map"
+				width="540" 
+				height="450" 
+				frameborder="0" 
+				style="border:0" 
+				src="https://www.google.com/maps/embed/v1/search?key=AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ&q=711&zoom=14&center=25.033952,121.564360"
+				>
+			</iframe>
+		</aside>
+		
+		<footer>
+			<p>參考網站：<a href = "https://www.oxxostudio.tw/articles/201707/google-maps-1.html" target="_blank;" style="color: white;">OxxoStudio</a></p>
+		</footer>
+		
+		<script>
+			var key = "AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ";
+			function search(){
+				var place = document.getElementById("q").value;
+				if(place == ""){
+					alert("請輸入關鍵字");
+					return;
+				}
+				document.getElementById("map").src = "https://www.google.com/maps/embed/v1/search?key=" + key + "&q=" + place;
+			}
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>PageI3B30 API</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>Google Maps Embed API</h1>
+			<p>地圖查詢功能</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "GoogleAPI.html">標記地點</a></li>
+				<li><a href = "APIdirections.html">路線規劃</a></li>
+				<li><a href = "APIsearch.html">搜尋</a></li>
+				<li><a href = "APIview.html">檢視</a></li>
+				<li><a href = "APIstreetview.html">街景服務</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>路線規劃</h2>
+				<article>
+					<form>
+						起點：<input type = "text" id = "origin" value = "民權西路" /><br>
+						終點：<input type = "text" id = "destination" value = "大同大學" /><br>
+					</form>
+						中途站(選填)：<br>
+						<form id = "directionForm">
+							<input type = "text" id = "waypoint0" name = "waypoint"><button type="button" onclick="add()">+</button><br>
+						</form>	
+					<br>
+					<p>旅行方式</p>
+					<form>
+					<select id = "mode">
+						<option value = "driving">汽車</option>
+						<option value = "walking">步行</option>
+						<option value = "bicycling">腳踏車</option>
+						<option value = "transit">大眾運輸</option>
+						<option value = "flying">飛機</option>
+					</select>
+					<br><br>
+					<p>避開</p>
+						<input type = "checkbox" value = "tolls" name = "avoid">收費站<br>
+						<input type = "checkbox" value = "ferries" name = "avoid">渡輪<br>
+						<input type = "checkbox" value = "highways" name = "avoid">高速公路<br>
+					</br>
+					<p>單位</p>
+						<input type = "radio" value = "metric" name = "units" checked="checked">公制<br>
+						<input type = "radio" value = "imperial" name = "units">英制<br>
+					</br>
+						<input type = "button" value = "送出" onclick = "start();" />
+					</form>
+					<br><br>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<iframe 
+				id = "map"
+				width="540" 
+				height="450" 
+				frameborder="0" 
+				style="border:0" 
+				src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ&origin=台北市政府&waypoints=台北101|國父紀念館&destination=台北小巨蛋"				>
+			</iframe>
+		</aside>
+		
+		<footer>
+			<p>參考網站：<a href = "https://www.oxxostudio.tw/articles/201707/google-maps-1.html" target="_blank;" style="color: white;">OxxoStudio</a></p>
+		</footer>
+		
+		<script>
+			var key = "AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ";
+			function start(){
+				var place = document.getElementById("origin").value;
+				if(place == ""){
+					alert("請輸入起點");
+					return;
+				}
+				var link = "https://www.google.com/maps/embed/v1/directions?key=" + key + "&origin=" + place;
+				
+				var waypoints = document.getElementsByName("waypoint").length;
+				var moreway = false;
+				for(var i = 0; i < waypoints; i++)
+				{
+					var waypoint = document.getElementById("waypoint" + i).value;
+					if(waypoint != "")
+					{
+						if(moreway)
+						{
+							link += "|" + waypoint;
+						}
+						else
+						{
+							moreway = true;
+							link += "&waypoints=" + waypoint;
+						}
+					}
+				}
+
+				var end = document.getElementById("destination").value;
+				if(end == ""){
+					alert("請輸入終點");
+					return;
+				}
+				link += "&destination=" + end;
+
+				var mode = document.getElementById("mode").value;
+				if(mode != "driving") link += "&mode=" + mode;
+
+				var avoid = document.getElementsByName("avoid");
+				var more = false;
+				for(var i = 0; i < avoid.length; i++)
+				{
+					if(avoid[i].checked)
+					{
+						if(more)
+						{
+							link += "|";
+						}
+						else
+						{
+							more = true;
+							link += "&avoid=";
+						}
+						link += avoid[i].value;
+					}
+				}
+
+				var units = document.getElementsByName("units");
+				if(units[1].checked) link += "&units=imperial";
+				
+				//console.log(link);
+				document.getElementById("map").src = link;
+			}
+			
+			function add(){
+				var waypoints = document.getElementsByName("waypoint").length;
+				var a = "waypoint" + (waypoints - 1);
+				//console.log(a);
+				var newHTML = document.getElementById("directionForm").innerHTML;
+				document.getElementById("directionForm").innerHTML = newHTML.replace(a , a + '" name = "waypoint" /><input type = "text" id = "waypoint' + waypoints);
+			}
+		</script>
+		
+	</body>
+</html>

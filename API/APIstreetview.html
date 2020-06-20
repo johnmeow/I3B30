@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>PageI3B30 API</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	
+		<header class = "banner">
+			<h1>Google Maps Embed API</h1>
+			<p>地圖查詢功能</p>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href = "GoogleAPI.html">標記地點</a></li>
+				<li><a href = "APIdirections.html">路線規劃</a></li>
+				<li><a href = "APIsearch.html">搜尋</a></li>
+				<li><a href = "APIview.html">檢視</a></li>
+				<li><a href = "APIstreetview.html">街景服務</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+			<section>
+				<h2>街景服務</h2>
+				<article>
+					<p>選擇想檢視的地點</p>
+					<select id = "streetview" onchange="sview(this.value);">
+						<option value = "25.032863,121.562943">台北101</option>
+						<option value = "22.612469, 120.300227">高雄85大樓</option>
+					</select>
+					<br><br>
+					<form>
+						或是輸入想檢視的地點：<br>
+						經度：<input type = "number" id = "x" /><br>
+						緯度：<input type = "number" id = "y" /><br>
+						<input type = "button" value = "送出" onclick = "findview();" />
+					</form>
+				</article>
+			</section>
+		</main>
+		
+		<aside>
+			<iframe 
+				id = "map"
+				width="540" 
+				height="450" 
+				frameborder="0" 
+				style="border:0" 
+				src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ&location=25.032863,121.562943&heading=60&pitch=30&fov=90"
+				>
+			</iframe>
+		</aside>
+		
+		<footer>
+			<p>參考網站：<a href = "https://www.oxxostudio.tw/articles/201707/google-maps-1.html" target="_blank;" style="color: white;">OxxoStudio</a></p>
+		</footer>
+		
+		<script>
+			var key = "AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ";
+			function sview(v){
+				document.getElementById("map").src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyA6KXA9KzFfKB4ASfzX78-sVXTMnFd46EQ&location=" + v;
+			}
+			function findview(){
+				var x = document.getElementById("x").value;
+				var y = document.getElementById("y").value;
+				document.getElementById("map").src = "https://www.google.com/maps/embed/v1/streetview?key=" + key + "&location=" + x + ',' + y;
+			}
+		</script>
+		
+	</body>
+</html>
